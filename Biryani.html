@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Biryani | Slow-cooked, sealed and opened at your table</title>
+<meta name="description" content="Biryani in Panaji, Goa. Hyderabadi dum biryani sealed with dough and cooked slow. Order online or book a table.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Young+Serif&family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);
+  --saffron:#F4B223;
+  --saffron-deep:#E39A0B;
+  --beet:#4A0F23;
+  --beet-2:#6B1A35;
+  --mint:#1F5B47;
+  --mint-2:#2B7A60;
+  --chilli:#C93A22;
+  --bg:#FFFFFF;
+  --surface:#F7F4EE;
+  --ink:#2A0A16;
+  --muted:#6C5560;
+  --line:#E7DFD6;
+  --shadow:0 10px 30px -12px rgba(74,15,35,.28);
+  --display:'Young Serif',Georgia,'Times New Roman',serif;
+  --body:'Figtree',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#16100F;--surface:#201816;--ink:#F6EDE4;--muted:#B8A79D;--line:#3A2D29;
+    --shadow:0 10px 30px -12px rgba(0,0,0,.7);
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#16100F;--surface:#201816;--ink:#F6EDE4;--muted:#B8A79D;--line:#3A2D29;
+  --shadow:0 10px 30px -12px rgba(0,0,0,.7);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{height:auto;scroll-behavior:smooth;scroll-padding-top:calc(84px + env(safe-area-inset-top,0px))}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.6;-webkit-font-smoothing:antialiased}
+img,svg{max-width:100%}
+a{color:inherit}
+button{font:inherit;cursor:pointer}
+:focus-visible{outline:3px solid var(--chilli);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1180px,92%);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);font-weight:400;line-height:1.08;margin:0}
+h2{font-size:clamp(2rem,4.6vw,3.3rem);letter-spacing:-.01em}
+p{margin:0}
+.lead{color:var(--muted);max-width:56ch;margin-top:14px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:2px solid transparent;border-radius:999px;padding:14px 26px;font-weight:700;text-decoration:none;transition:transform .2s,background .2s,color .2s,box-shadow .2s}
+.btn:active{transform:scale(.97)}
+.btn-dark{background:var(--beet);color:#FFF3DA}
+.btn-dark:hover{background:var(--beet-2);box-shadow:var(--shadow)}
+.btn-line{border-color:var(--beet);color:var(--beet);background:transparent}
+.btn-line:hover{background:var(--beet);color:#FFF3DA}
+.btn-saffron{background:var(--saffron);color:var(--beet)}
+.btn-saffron:hover{background:var(--saffron-deep)}
+
+/* NAV */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:50;background:var(--saffron);color:var(--beet);transition:box-shadow .3s}
+.nav.scrolled{box-shadow:0 6px 20px -10px rgba(74,15,35,.5)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:72px;gap:16px}
+.logo{font-family:var(--display);font-size:1.6rem;text-decoration:none;display:flex;align-items:center;gap:10px;color:var(--beet)}
+.logo svg{width:34px;height:34px;flex:none}
+.links{display:flex;gap:28px;align-items:center}
+.links a{text-decoration:none;font-weight:600;position:relative;padding:6px 0}
+.links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--beet);transition:width .25s}
+.links a:hover::after{width:100%}
+.nav-actions{display:flex;gap:10px;align-items:center}
+.cart-btn{position:relative;background:var(--beet);color:#FFF3DA;border:0;border-radius:999px;padding:11px 18px;font-weight:700;display:flex;gap:8px;align-items:center;transition:transform .2s}
+.cart-btn:hover{transform:translateY(-1px)}
+.cart-count{background:var(--saffron);color:var(--beet);border-radius:999px;min-width:24px;height:24px;display:grid;place-items:center;font-size:.85rem;padding:0 6px}
+.cart-count.bump{animation:bump .35s}
+@keyframes bump{50%{transform:scale(1.4)}}
+.theme-btn,.burger{background:transparent;border:2px solid var(--beet);color:var(--beet);border-radius:50%;width:42px;height:42px;display:grid;place-items:center}
+.burger{display:none}
+.mobile-menu{display:none}
+
+/* HERO */
+.hero{background:var(--saffron);color:var(--beet);position:relative;overflow:hidden;padding:48px 0 0}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:30px;align-items:center;min-height:min(78vh,720px)}
+.hero h1{font-size:clamp(2.7rem,7vw,5.6rem);letter-spacing:-.02em}
+.hero h1 span{display:block}
+.hero p.sub{font-size:1.2rem;max-width:44ch;margin-top:22px;font-weight:500}
+.hero-cta{display:flex;flex-wrap:wrap;gap:14px;margin-top:32px}
+.hero-meta{display:flex;flex-wrap:wrap;gap:12px 28px;margin-top:38px;font-weight:600;font-size:.98rem}
+.hero-meta div{display:flex;align-items:center;gap:8px}
+.hero-meta svg{width:20px;height:20px}
+.handi-stage{position:relative;display:flex;justify-content:center;align-items:flex-end}
+.handi{width:min(500px,100%);height:auto;display:block;cursor:pointer;filter:drop-shadow(0 24px 30px rgba(74,15,35,.35))}
+.lid{transform-box:fill-box;transform-origin:50% 100%;transition:transform 1.1s cubic-bezier(.2,.9,.25,1.1)}
+.handi.open .lid{transform:translate(95px,-130px) rotate(22deg)}
+.steam path{fill:none;stroke:#FFF8E6;stroke-width:7;stroke-linecap:round;opacity:0;transform-box:fill-box;transform-origin:50% 100%}
+.handi.open .steam path{animation:steam 3.6s ease-in-out infinite}
+.handi.open .steam path:nth-child(2){animation-delay:.9s}
+.handi.open .steam path:nth-child(3){animation-delay:1.8s}
+.handi.open .steam path:nth-child(4){animation-delay:2.6s}
+@keyframes steam{0%{opacity:0;transform:translateY(30px) scaleY(.7)}30%{opacity:.85}100%{opacity:0;transform:translateY(-60px) scaleY(1.15)}}
+.rice-glow{opacity:0;transition:opacity 1s .4s}
+.handi.open .rice-glow{opacity:1}
+.hint{position:absolute;bottom:6px;right:4%;background:var(--beet);color:#FFF3DA;font-size:.85rem;font-weight:600;padding:6px 14px;border-radius:999px;transition:opacity .4s}
+.hero-wave{display:block;width:100%;height:60px;margin-top:-1px}
+
+/* SECTIONS */
+section{padding:96px 0}
+.sec-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:20px;margin-bottom:40px}
+
+/* MENU */
+.menu-tools{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:space-between;margin-bottom:30px}
+.tabs{display:flex;gap:8px;flex-wrap:wrap}
+.tab{background:var(--surface);border:2px solid transparent;color:var(--ink);padding:10px 20px;border-radius:999px;font-weight:600;transition:all .2s}
+.tab:hover{border-color:var(--saffron)}
+.tab[aria-selected="true"]{background:var(--beet);color:#FFF3DA}
+.veg-toggle{display:flex;align-items:center;gap:10px;font-weight:600;cursor:pointer;user-select:none}
+.veg-toggle input{position:absolute;opacity:0}
+.sw{width:46px;height:26px;border-radius:99px;background:var(--line);position:relative;transition:background .25s}
+.sw::after{content:"";position:absolute;top:3px;left:3px;width:20px;height:20px;border-radius:50%;background:#fff;transition:transform .25s}
+.veg-toggle input:checked+.sw{background:var(--mint-2)}
+.veg-toggle input:checked+.sw::after{transform:translateX(20px)}
+.veg-toggle input:focus-visible+.sw{outline:3px solid var(--chilli);outline-offset:3px}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.dish{background:var(--surface);border-radius:22px;overflow:hidden;display:flex;flex-direction:column;transition:transform .3s,box-shadow .3s;animation:pop .45s both}
+.dish:hover{transform:translateY(-6px);box-shadow:var(--shadow)}
+@keyframes pop{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+.dish-art{aspect-ratio:16/10;display:grid;place-items:center;position:relative}
+.dish-art svg{width:68%;height:auto;transition:transform .6s}
+.dish:hover .dish-art svg{transform:rotate(18deg) scale(1.05)}
+.badge{position:absolute;top:14px;left:14px;background:var(--beet);color:#FFF3DA;font-size:.78rem;font-weight:700;padding:4px 12px;border-radius:99px}
+.vegmark{position:absolute;top:14px;right:14px;width:22px;height:22px;border:2px solid;border-radius:4px;display:grid;place-items:center;background:#fff}
+.vegmark::after{content:"";width:10px;height:10px;border-radius:50%;background:currentColor}
+.vegmark.v{color:#1b8a3b}.vegmark.n{color:#b3261e}
+.dish-body{padding:20px 22px 22px;display:flex;flex-direction:column;gap:8px;flex:1}
+.dish h3{font-size:1.4rem}
+.dish p{color:var(--muted);font-size:.96rem;flex:1}
+.dish-foot{display:flex;align-items:center;justify-content:space-between;margin-top:10px}
+.price{font-weight:700;font-size:1.2rem}
+.add{background:var(--beet);color:#FFF3DA;border:0;border-radius:99px;padding:10px 20px;font-weight:700;transition:background .2s,transform .2s}
+.add:hover{background:var(--beet-2)}
+.add:active{transform:scale(.94)}
+.stepper{display:flex;align-items:center;gap:4px;background:var(--saffron);color:var(--beet);border-radius:99px;padding:4px}
+.stepper button{width:34px;height:34px;border-radius:50%;border:0;background:var(--beet);color:#FFF3DA;font-size:1.2rem;font-weight:700;line-height:1}
+.stepper span{min-width:28px;text-align:center;font-weight:700}
+.empty{grid-column:1/-1;text-align:center;padding:50px;color:var(--muted)}
+
+/* DUM */
+.dum{background:var(--mint);color:#F4FFF8}
+.dum h2{color:#fff}
+.dum .lead{color:#C7E5D8}
+.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:48px;counter-reset:s}
+.step{border-top:3px solid var(--saffron);padding-top:20px;counter-increment:s;position:relative}
+.step::before{content:counter(s);font-family:var(--display);font-size:2.6rem;color:var(--saffron);display:block;line-height:1;margin-bottom:12px}
+.step h3{font-size:1.35rem;margin-bottom:8px;color:#fff}
+.step p{color:#C7E5D8;font-size:.97rem}
+.timer{margin-top:56px;display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center;background:rgba(0,0,0,.18);border-radius:24px;padding:28px 32px}
+.timer strong{font-family:var(--display);font-size:2.4rem;font-weight:400;color:var(--saffron);margin-right:10px}
+.bar{flex:1;min-width:240px}
+.bar-track{height:12px;background:rgba(255,255,255,.18);border-radius:99px;overflow:hidden;margin-top:10px}
+.bar-fill{height:100%;width:0;background:var(--saffron);border-radius:99px;transition:width 2.4s cubic-bezier(.2,.8,.2,1)}
+.bar.in .bar-fill{width:100%}
+
+/* COMBOS */
+.combos{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.combo{border:2px solid var(--line);border-radius:24px;padding:30px;display:flex;flex-direction:column;gap:12px;transition:border-color .25s,transform .25s}
+.combo:hover{border-color:var(--saffron);transform:translateY(-4px)}
+.combo.feat{background:var(--beet);color:#FFF3DA;border-color:var(--beet)}
+.combo.feat p,.combo.feat li{color:#E8CFD6}
+.combo h3{font-size:1.6rem}
+.combo ul{margin:0;padding-left:20px;color:var(--muted);flex:1}
+.combo .price{font-size:1.7rem;font-family:var(--display)}
+.combo small{font-size:.9rem;opacity:.8}
+
+/* REVIEWS */
+.reviews{background:var(--surface)}
+.rev-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;margin-top:10px}
+.rev{background:var(--bg);border-radius:22px;padding:28px;box-shadow:var(--shadow)}
+.stars{color:var(--saffron-deep);letter-spacing:3px;font-size:1.1rem}
+.rev p{margin:12px 0 18px}
+.rev b{display:block}
+.rev span{color:var(--muted);font-size:.9rem}
+
+/* RESERVE */
+.reserve{background:var(--beet);color:#FFF3DA}
+.reserve h2{color:#fff}
+.res-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+.reserve .lead{color:#E8CFD6}
+.info{margin-top:34px;display:grid;gap:18px}
+.info div{display:flex;gap:14px}
+.info svg{width:24px;height:24px;flex:none;color:var(--saffron);margin-top:3px}
+.info b{display:block}
+.info span{color:#E8CFD6}
+form.card{background:var(--bg);color:var(--ink);border-radius:26px;padding:34px;display:grid;gap:18px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+label{display:grid;gap:6px;font-weight:600;font-size:.95rem}
+input[type=text],input[type=tel],input[type=date],select,textarea{width:100%;font:inherit;padding:13px 14px;border-radius:12px;border:2px solid var(--line);background:var(--surface);color:var(--ink);transition:border-color .2s}
+input:focus,select:focus,textarea:focus{border-color:var(--saffron-deep);outline:none}
+.err{color:var(--chilli);font-size:.85rem;font-weight:500;min-height:0;display:none}
+label.bad input,label.bad select{border-color:var(--chilli)}
+label.bad .err{display:block}
+.success{display:none;text-align:center;padding:20px 6px}
+.success.show{display:block;animation:pop .5s both}
+.tick{width:74px;height:74px;margin:0 auto 14px;border-radius:50%;background:var(--mint-2);display:grid;place-items:center}
+.tick svg{width:38px;height:38px;stroke:#fff;stroke-width:4;fill:none;stroke-dasharray:40;stroke-dashoffset:40;animation:draw .6s .2s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.success h3{font-size:1.7rem;margin-bottom:8px}
+.success p{color:var(--muted)}
+
+/* FOOTER */
+footer{background:#1E0610;color:#E8CFD6;padding:60px 0 30px}
+.foot{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px}
+footer h4{font-family:var(--display);font-weight:400;font-size:1.2rem;color:#fff;margin:0 0 12px}
+footer a{display:block;text-decoration:none;padding:3px 0;color:#E8CFD6}
+footer a:hover{color:var(--saffron)}
+.copy{border-top:1px solid rgba(255,255,255,.12);margin-top:40px;padding-top:20px;font-size:.9rem;opacity:.75;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+
+/* CART DRAWER */
+.overlay{position:fixed;inset:0;background:rgba(20,5,10,.55);opacity:0;pointer-events:none;transition:opacity .3s;z-index:90}
+.overlay.show{opacity:1;pointer-events:auto}
+.drawer{position:fixed;top:0;right:0;height:100%;width:min(440px,100%);background:var(--bg);color:var(--ink);z-index:100;transform:translateX(105%);transition:transform .4s cubic-bezier(.2,.8,.2,1);display:flex;flex-direction:column;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);box-shadow:-20px 0 50px -20px rgba(0,0,0,.5)}
+.drawer.show{transform:none}
+.d-head{display:flex;justify-content:space-between;align-items:center;padding:22px 24px;border-bottom:1px solid var(--line)}
+.d-head h3{font-size:1.6rem}
+.close{background:var(--surface);border:0;border-radius:50%;width:40px;height:40px;font-size:1.3rem;color:var(--ink)}
+.d-body{flex:1;overflow:auto;padding:12px 24px}
+.item{display:flex;align-items:center;gap:14px;padding:14px 0;border-bottom:1px dashed var(--line)}
+.item .nm{flex:1}
+.item .nm b{display:block}
+.item .nm span{color:var(--muted);font-size:.9rem}
+.item .stepper{padding:3px}
+.item .stepper button{width:30px;height:30px}
+.d-empty{text-align:center;color:var(--muted);padding:60px 10px}
+.d-foot{padding:20px 24px;border-top:1px solid var(--line);display:grid;gap:10px;background:var(--surface)}
+.line{display:flex;justify-content:space-between}
+.line.total{font-weight:700;font-size:1.25rem}
+.chk{display:none;gap:12px}
+.chk.show{display:grid}
+.chk input{padding:11px 12px}
+.d-foot .btn{width:100%}
+.placed{display:none;text-align:center;padding:50px 24px}
+.placed.show{display:block}
+
+/* TOAST */
+.toast{position:fixed;left:50%;bottom:calc(24px + env(safe-area-inset-bottom,0px));transform:translate(-50%,40px);background:var(--beet);color:#FFF3DA;padding:12px 22px;border-radius:99px;font-weight:600;opacity:0;pointer-events:none;transition:all .35s;z-index:120;box-shadow:var(--shadow);max-width:90%}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+
+/* RESPONSIVE */
+@media (max-width:960px){
+  .links{display:none}
+  .burger{display:grid}
+  .mobile-menu{display:none;background:var(--saffron);border-top:1px solid rgba(74,15,35,.2);padding:10px 4% 20px}
+  .mobile-menu.show{display:grid}
+  .mobile-menu a{padding:12px 0;font-weight:600;text-decoration:none;font-size:1.1rem;border-bottom:1px solid rgba(74,15,35,.15)}
+  .hero-grid{grid-template-columns:1fr;text-align:left;min-height:0;padding-bottom:10px}
+  .handi{width:min(380px,90%)}
+  .grid,.combos,.rev-grid{grid-template-columns:repeat(2,1fr)}
+  .steps{grid-template-columns:repeat(2,1fr)}
+  .res-grid{grid-template-columns:1fr;gap:40px}
+  .foot{grid-template-columns:1fr 1fr}
+}
+@media (max-width:620px){
+  body{font-size:16px}
+  section{padding:64px 0}
+  .grid,.combos,.rev-grid,.steps,.row,.foot{grid-template-columns:1fr}
+  .nav-actions .hide-s{display:none}
+  .cart-btn span.lbl{display:none}
+  .handi.open .lid{transform:translate(70px,-100px) rotate(22deg)}
+  form.card{padding:24px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
+}
+</style>
+</head>
+<body>
+
+<header class="nav" id="nav">
+  <div class="wrap nav-in">
+    <a href="#top" class="logo" aria-label="Biryani home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#4A0F23"/><path d="M9 21h22c0 7-5 11-11 11S9 28 9 21Z" fill="#F4B223"/><path d="M11 19c2-6 16-6 18 0Z" fill="#FFF3DA"/><circle cx="20" cy="11" r="2" fill="#F4B223"/></svg>
+      Biryani
+    </a>
+    <nav class="links" aria-label="Main">
+      <a href="#menu">Menu</a>
+      <a href="#dum">The dum</a>
+      <a href="#feasts">Feasts</a>
+      <a href="#reviews">Reviews</a>
+      <a href="#reserve">Book a table</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="theme-btn hide-s" id="themeBtn" aria-label="Switch light or dark theme" title="Switch theme">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8Z"/></svg>
+      </button>
+      <button class="cart-btn" id="cartBtn" aria-label="Open your order">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 7h12l-1 13H7L6 7Z"/><path d="M9 7a3 3 0 0 1 6 0"/></svg>
+        <span class="lbl">Your order</span>
+        <span class="cart-count" id="cartCount">0</span>
+      </button>
+      <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#menu">Menu</a>
+    <a href="#dum">The dum</a>
+    <a href="#feasts">Feasts</a>
+    <a href="#reviews">Reviews</a>
+    <a href="#reserve">Book a table</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- HERO -->
+<div class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <h1><span>Sealed with dough.</span><span>Cooked on dum.</span><span>Opened for you.</span></h1>
+      <p class="sub">Hyderabadi-style biryani, slow-cooked for 3 hours in a sealed copper handi. Lift the lid and the whole table knows.</p>
+      <div class="hero-cta">
+        <a href="#menu" class="btn btn-dark">Order biryani</a>
+        <a href="#reserve" class="btn btn-line">Book a table</a>
+      </div>
+      <div class="hero-meta">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>Open daily, 12 pm to 11 pm</div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg>18th June Road, Panaji, Goa</div>
+      </div>
+    </div>
+    <div class="handi-stage">
+      <svg class="handi" id="handi" viewBox="0 0 420 400" role="button" tabindex="0" aria-label="Biryani handi. Press to open or close the lid">
+        <defs>
+          <radialGradient id="rice" cx="50%" cy="50%" r="60%"><stop offset="0" stop-color="#FFF1B8"/><stop offset="1" stop-color="#F4B223"/></radialGradient>
+          <linearGradient id="copper" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#E0894A"/><stop offset="1" stop-color="#9C4A1C"/></linearGradient>
+          <linearGradient id="body" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#6B1A35"/><stop offset=".5" stop-color="#8A2347"/><stop offset="1" stop-color="#4A0F23"/></linearGradient>
+        </defs>
+        <ellipse cx="210" cy="378" rx="150" ry="14" fill="rgba(74,15,35,.25)"/>
+        <path d="M62 190 Q36 350 210 358 Q384 350 358 190 Z" fill="url(#body)"/>
+        <path d="M80 250 Q210 290 340 250" fill="none" stroke="#F4B223" stroke-width="5" stroke-linecap="round" opacity=".85"/>
+        <path d="M92 285 Q210 322 328 285" fill="none" stroke="#F4B223" stroke-width="3" stroke-linecap="round" stroke-dasharray="2 10" opacity=".7"/>
+        <ellipse cx="210" cy="190" rx="154" ry="26" fill="#3A0B1B"/>
+        <g class="rice-glow">
+          <ellipse cx="210" cy="190" rx="138" ry="18" fill="url(#rice)"/>
+          <g fill="#2B7A60"><circle cx="150" cy="188" r="4"/><circle cx="188" cy="194" r="3.5"/><circle cx="236" cy="187" r="4"/><circle cx="270" cy="193" r="3.5"/><circle cx="212" cy="184" r="3"/></g>
+          <g fill="#C93A22"><circle cx="170" cy="184" r="3.5"/><circle cx="250" cy="195" r="3"/><circle cx="130" cy="193" r="3"/></g>
+        </g>
+        <g class="steam">
+          <path d="M150 170 C130 130 175 110 150 70"/>
+          <path d="M195 168 C175 125 225 105 198 55"/>
+          <path d="M245 168 C225 128 270 108 245 62"/>
+          <path d="M285 170 C268 140 305 120 285 85"/>
+        </g>
+        <g class="lid">
+          <ellipse cx="210" cy="190" rx="162" ry="22" fill="#7A3815"/>
+          <path d="M52 188 Q210 20 368 188 Z" fill="url(#copper)"/>
+          <path d="M90 170 Q210 66 330 170" fill="none" stroke="#FFD9A8" stroke-width="4" stroke-linecap="round" opacity=".45"/>
+          <path d="M52 188 Q210 205 368 188" fill="none" stroke="#F3E3C0" stroke-width="7" stroke-linecap="round" stroke-dasharray="1 14" />
+          <circle cx="210" cy="64" r="14" fill="#4A0F23"/>
+          <circle cx="210" cy="64" r="6" fill="#F4B223"/>
+        </g>
+        <rect x="120" y="352" width="26" height="22" rx="6" fill="#3A0B1B"/>
+        <rect x="274" y="352" width="26" height="22" rx="6" fill="#3A0B1B"/>
+      </svg>
+      <span class="hint" id="hint">Tap the handi</span>
+    </div>
+  </div>
+  <svg class="hero-wave" viewBox="0 0 1440 60" preserveAspectRatio="none" aria-hidden="true"><path d="M0 60V28C240 -4 480 -4 720 22s480 30 720-2v40Z" fill="var(--bg)"/></svg>
+</div>
+
+<!-- MENU -->
+<section id="menu">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>What's cooking today</h2>
+        <p class="lead">Every biryani comes with burani raita and mirchi ka salan. Add dishes to your order and we'll confirm it by phone.</p>
+      </div>
+    </div>
+    <div class="menu-tools">
+      <div class="tabs" role="tablist" aria-label="Menu categories" id="tabs"></div>
+      <label class="veg-toggle"><input type="checkbox" id="vegOnly"><span class="sw"></span>Vegetarian only</label>
+    </div>
+    <div class="grid" id="menuGrid" aria-live="polite"></div>
+  </div>
+</section>
+
+<!-- DUM -->
+<section class="dum" id="dum">
+  <div class="wrap">
+    <h2>How dum biryani is made</h2>
+    <p class="lead">Dum means "to breathe in" and "to steam". The pot is sealed so every grain cooks in the flavour of the meat below it.</p>
+    <div class="steps">
+      <div class="step"><h3>Marinate overnight</h3><p>Meat rests for 12 hours in hung curd, raw papaya, ginger-garlic and our house garam masala.</p></div>
+      <div class="step"><h3>Par-boil the rice</h3><p>Aged basmati goes into whole spices and salted water until it's 70 percent cooked, no further.</p></div>
+      <div class="step"><h3>Layer the handi</h3><p>Meat, rice, fried onions, mint, saffron milk and ghee go in layers. Nothing is stirred.</p></div>
+      <div class="step"><h3>Seal and cook slow</h3><p>A strip of dough locks the lid. The handi sits on low heat for 3 hours, then comes to your table sealed.</p></div>
+    </div>
+    <div class="timer">
+      <div><strong data-count="3">0</strong>hours on dum</div>
+      <div><strong data-count="24">0</strong>whole spices</div>
+      <div><strong data-count="12">0</strong>hour marinade</div>
+      <div class="bar" id="bar"><span>Handi cooking time</span><div class="bar-track"><div class="bar-fill"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FEASTS -->
+<section id="feasts">
+  <div class="wrap">
+    <div class="sec-head">
+      <div>
+        <h2>Feasts for the table</h2>
+        <p class="lead">Ordering for more than one? Our combos are sized and priced for sharing.</p>
+      </div>
+    </div>
+    <div class="combos" id="combos"></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews" id="reviews">
+  <div class="wrap">
+    <div class="sec-head"><h2>What guests say</h2></div>
+    <div class="rev-grid">
+      <div class="rev"><div class="stars" aria-label="5 out of 5">★★★★★</div><p>The moment they cut the dough seal, the smell hit the whole room. Best chicken dum biryani I've had in Goa.</p><b>Rohan D'Souza</b><span>Dined with family, Panaji</span></div>
+      <div class="rev"><div class="stars" aria-label="5 out of 5">★★★★★</div><p>The prawn biryani with kokum is a brilliant idea. Tangy, fragrant, and not too heavy. Ordering it again this weekend.</p><b>Meera Kamat</b><span>Ordered for delivery</span></div>
+      <div class="rev"><div class="stars" aria-label="4 out of 5">★★★★☆</div><p>Finally a vegetarian biryani that is not an afterthought. The paneer tikka biryani had real depth. Service was quick.</p><b>Aditya Naik</b><span>Lunch with colleagues</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- RESERVE -->
+<section class="reserve" id="reserve">
+  <div class="wrap res-grid">
+    <div>
+      <h2>Book a table</h2>
+      <p class="lead">For lunch or dinner, for two or twelve. Tell us when, and we'll hold the table and have the handi ready.</p>
+      <div class="info">
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z"/><circle cx="12" cy="9" r="2.5"/></svg><p><b>Find us</b><span>18th June Road, Panaji, Goa 403001</span></p></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><p><b>Hours</b><span>Every day, 12 pm to 11 pm. Kitchen closes at 10:30 pm.</span></p></div>
+        <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2Z"/></svg><p><b>Call us</b><span>+91 98765 43210</span></p></div>
+      </div>
+    </div>
+    <div>
+      <form class="card" id="resForm" novalidate>
+        <div class="row">
+          <label id="l-name">Your name<input type="text" id="r-name" autocomplete="name" placeholder="Anisha Naik"><span class="err">Enter your name.</span></label>
+          <label id="l-phone">Phone number<input type="tel" id="r-phone" autocomplete="tel" inputmode="numeric" placeholder="98765 43210"><span class="err">Enter a 10-digit mobile number.</span></label>
+        </div>
+        <div class="row">
+          <label id="l-date">Date<input type="date" id="r-date"><span class="err">Choose a date from today onward.</span></label>
+          <label id="l-time">Time<select id="r-time"><option value="">Select a time</option></select><span class="err">Select a time.</span></label>
+        </div>
+        <div class="row">
+          <label id="l-guests">Guests<select id="r-guests"></select><span class="err">Select number of guests.</span></label>
+          <label>Occasion (optional)<select id="r-occ"><option>Just a meal</option><option>Birthday</option><option>Anniversary</option><option>Family get-together</option><option>Business lunch</option></select></label>
+        </div>
+        <button type="submit" class="btn btn-dark">Reserve my table</button>
+      </form>
+      <div class="success card" id="resOk" style="background:var(--bg);color:var(--ink);border-radius:26px;padding:34px" role="status">
+        <div class="tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
+        <h3>Table reserved</h3>
+        <p id="resMsg"></p>
+        <p style="margin-top:10px">We'll call to confirm within the hour.</p>
+        <button class="btn btn-line" id="resAgain" style="margin-top:22px;color:var(--ink);border-color:var(--ink)">Make another booking</button>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <h4>Biryani</h4>
+        <p style="max-width:34ch">Slow-cooked Hyderabadi dum biryani with a Goan touch. Sealed, cooked and opened for you since 2016.</p>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <a href="#menu">Menu</a><a href="#dum">The dum</a><a href="#feasts">Feasts</a><a href="#reserve">Book a table</a>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <p>18th June Road, Panaji, Goa</p><p>+91 98765 43210</p><p>hello@biryani.example</p>
+      </div>
+    </div>
+    <div class="copy"><span>© 2026 Biryani. All rights reserved.</span><span>Prices include no taxes. 5% GST is added at checkout.</span></div>
+  </div>
+</footer>
+
+<!-- CART -->
+<div class="overlay" id="overlay"></div>
+<aside class="drawer" id="drawer" aria-label="Your order" aria-hidden="true">
+  <div class="d-head"><h3>Your order</h3><button class="close" id="closeCart" aria-label="Close order">✕</button></div>
+  <div class="d-body" id="dBody"></div>
+  <div class="placed" id="placed" role="status">
+    <div class="tick"><svg viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round"><path d="M5 13l4 4L19 7"/></svg></div>
+    <h3 style="font-size:1.7rem;margin-bottom:8px">Order placed</h3>
+    <p id="placedMsg" style="color:var(--muted)"></p>
+    <button class="btn btn-dark" id="placedDone" style="margin-top:24px">Back to the menu</button>
+  </div>
+  <div class="d-foot" id="dFoot">
+    <div class="line"><span>Subtotal</span><span id="sub">₹0</span></div>
+    <div class="line"><span>GST (5%)</span><span id="gst">₹0</span></div>
+    <div class="line total"><span>Total</span><span id="tot">₹0</span></div>
+    <div class="chk" id="chk">
+      <label>Name<input type="text" id="c-name" placeholder="Your name"></label>
+      <label>Phone<input type="tel" id="c-phone" inputmode="numeric" placeholder="10-digit mobile number"></label>
+      <label>Delivery address<input type="text" id="c-addr" placeholder="House, street, area"></label>
+      <span class="err" id="c-err" style="color:var(--chilli);font-size:.88rem"></span>
+    </div>
+    <button class="btn btn-dark" id="checkout">Continue to checkout</button>
+  </div>
+</aside>
+<div class="toast" id="toast" role="status"></div>
+
+<script>
+(function(){
+  'use strict';
+  /* ---------- DATA ---------- */
+  var MENU=[
+    {id:1,cat:'Biryani',name:'Hyderabadi Chicken Dum',desc:'Bone-in chicken, aged basmati, saffron milk and fried onions, sealed and cooked slow.',price:289,veg:false,tag:'Signature',c1:'#F4B223',c2:'#C93A22'},
+    {id:2,cat:'Biryani',name:'Mutton Raan Biryani',desc:'Tender mutton marinated overnight and layered with whole spices and mint.',price:389,veg:false,tag:'Slow-cooked',c1:'#E39A0B',c2:'#6B1A35'},
+    {id:3,cat:'Biryani',name:'Goan Prawn Biryani',desc:'Tiger prawns, kokum and coconut masala folded into fragrant rice.',price:359,veg:false,tag:'Goan twist',c1:'#FFD36B',c2:'#1F5B47'},
+    {id:4,cat:'Biryani',name:'Egg Dum Biryani',desc:'Spiced boiled eggs on a bed of masala rice with crisp onions.',price:219,veg:false,tag:'',c1:'#F9C74F',c2:'#C93A22'},
+    {id:5,cat:'Biryani',name:'Paneer Tikka Biryani',desc:'Charred paneer tikka layered with saffron rice and mint chutney.',price:259,veg:true,tag:'Chef pick',c1:'#F4B223',c2:'#2B7A60'},
+    {id:6,cat:'Biryani',name:'Subz Dum Biryani',desc:'Seasonal vegetables, cashews and raisins cooked sealed on low heat.',price:229,veg:true,tag:'',c1:'#FFD36B',c2:'#6B1A35'},
+    {id:7,cat:'Starters',name:'Galouti Kebab',desc:'Melt-in-the-mouth minced mutton patties served with ulte tawe ka paratha.',price:299,veg:false,tag:'Lucknowi',c1:'#B5651D',c2:'#F4B223'},
+    {id:8,cat:'Starters',name:'Chicken 65',desc:'Crisp Chennai-style fried chicken with curry leaves and green chilli.',price:249,veg:false,tag:'Spicy',c1:'#C93A22',c2:'#FFD36B'},
+    {id:9,cat:'Starters',name:'Paneer Tikka',desc:'Tandoor-grilled paneer with peppers and onion in a hung-curd marinade.',price:239,veg:true,tag:'',c1:'#E39A0B',c2:'#1F5B47'},
+    {id:10,cat:'Sides',name:'Mirchi ka Salan',desc:'Green chillies in a peanut, sesame and tamarind gravy.',price:99,veg:true,tag:'',c1:'#2B7A60',c2:'#F4B223'},
+    {id:11,cat:'Sides',name:'Burani Raita',desc:'Whisked curd with garlic, roasted cumin and fresh mint.',price:79,veg:true,tag:'',c1:'#F6F0E4',c2:'#2B7A60'},
+    {id:12,cat:'Sweets & drinks',name:'Double ka Meetha',desc:'Fried bread soaked in saffron milk and topped with nuts.',price:129,veg:true,tag:'Hyderabadi classic',c1:'#E39A0B',c2:'#6B1A35'},
+    {id:13,cat:'Sweets & drinks',name:'Rose Falooda',desc:'Rose syrup, vermicelli, basil seeds and kulfi in chilled milk.',price:149,veg:true,tag:'',c1:'#F29BB5',c2:'#FFF3DA'},
+    {id:14,cat:'Sweets & drinks',name:'Masala Chaas',desc:'Cooling spiced buttermilk with roasted cumin.',price:69,veg:true,tag:'',c1:'#CFE8D8',c2:'#2B7A60'}
+  ];
+  var COMBOS=[
+    {name:'Date night',serves:'Serves 2',items:['1 Chicken Dum Biryani','1 Paneer Tikka starter','Raita and salan','2 Masala Chaas'],price:699,ids:[1,9,11,10,14,14],cls:''},
+    {name:'Family handi',serves:'Serves 4 to 5',items:['1 full handi Chicken Dum Biryani','Chicken 65','Raita and salan','Double ka Meetha','4 Masala Chaas'],price:1499,ids:[1,1,1,8,11,10,12,14,14,14,14],cls:'feat',note:'Most ordered'},
+    {name:'Veg feast',serves:'Serves 3',items:['Paneer Tikka Biryani','Subz Dum Biryani','Paneer Tikka starter','Raita and salan'],price:849,ids:[5,6,9,11,10],cls:''}
+  ];
+  var CATS=['All','Biryani','Starters','Sides','Sweets & drinks'];
+  var byId={};MENU.forEach(function(m){byId[m.id]=m});
+
+  /* ---------- HELPERS ---------- */
+  function $(s,r){return (r||document).querySelector(s)}
+  function money(n){return '₹'+Math.round(n).toLocaleString('en-IN')}
+  function toast(msg){var t=$('#toast');t.textContent=msg;t.classList.add('show');clearTimeout(toast.t);toast.t=setTimeout(function(){t.classList.remove('show')},2200)}
+  function rng(seed){var s=seed*9301+49297;return function(){s=(s*9301+49297)%233280;return s/233280}}
+  function plate(m){
+    var r=rng(m.id+3),g='';
+    for(var i=0;i<46;i++){
+      var a=r()*Math.PI*2,d=Math.sqrt(r())*58,x=100+Math.cos(a)*d,y=100+Math.sin(a)*d,rot=Math.floor(r()*180);
+      var col=r()>.8?m.c2:'#FFF6D6';
+      g+='<rect x="'+x.toFixed(1)+'" y="'+y.toFixed(1)+'" width="9" height="3.2" rx="1.6" fill="'+col+'" opacity=".92" transform="rotate('+rot+' '+x.toFixed(1)+' '+y.toFixed(1)+')"/>';
+    }
+    return '<svg viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="92" fill="rgba(255,255,255,.55)"/><circle cx="100" cy="100" r="80" fill="#fff"/><circle cx="100" cy="100" r="66" fill="'+m.c1+'"/>'+g+'<circle cx="100" cy="100" r="12" fill="'+m.c2+'" opacity=".95"/></svg>';
+  }
+
+  /* ---------- STATE ---------- */
+  var cart={},cat='All',vegOnly=false;
+  try{var saved=localStorage.getItem('zafran-cart');if(saved){var p=JSON.parse(saved);if(p&&typeof p==='object'){Object.keys(p).forEach(function(k){if(byId[k]&&p[k]>0)cart[k]=p[k]})}}}catch(e){}
+  function persist(){try{localStorage.setItem('zafran-cart',JSON.stringify(cart))}catch(e){}}
+  function count(){return Object.keys(cart).reduce(function(a,k){return a+cart[k]},0)}
+  function subtotal(){return Object.keys(cart).reduce(function(a,k){return a+cart[k]*byId[k].price},0)}
+
+  /* ---------- NAV ---------- */
+  var nav=$('#nav');
+  window.addEventListener('scroll',function(){nav.classList.toggle('scrolled',window.scrollY>10)},{passive:true});
+  var burger=$('#burger'),mm=$('#mobileMenu');
+  burger.addEventListener('click',function(){var o=mm.classList.toggle('show');burger.setAttribute('aria-expanded',o)});
+  mm.addEventListener('click',function(e){if(e.target.tagName==='A'){mm.classList.remove('show');burger.setAttribute('aria-expanded','false')}});
+  $('#themeBtn').addEventListener('click',function(){
+    var root=document.documentElement,cur=root.getAttribute('data-theme');
+    if(!cur){cur=window.matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}
+    root.setAttribute('data-theme',cur==='dark'?'light':'dark');
+  });
+
+  /* ---------- HERO HANDI ---------- */
+  var handi=$('#handi'),hint=$('#hint');
+  function toggleHandi(){var o=handi.classList.toggle('open');hint.style.opacity='0';hint.textContent=o?'Tap to close':'Tap the handi'}
+  handi.addEventListener('click',toggleHandi);
+  handi.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();toggleHandi()}});
+  setTimeout(function(){handi.classList.add('open');hint.textContent='Tap to close';setTimeout(function(){hint.style.opacity='0'},2600)},900);
+
+  /* ---------- MENU ---------- */
+  var tabs=$('#tabs');
+  CATS.forEach(function(c,i){
+    var b=document.createElement('button');b.className='tab';b.type='button';b.setAttribute('role','tab');
+    b.setAttribute('aria-selected',i===0);b.textContent=c;
+    b.addEventListener('click',function(){cat=c;Array.prototype.forEach.call(tabs.children,function(x){x.setAttribute('aria-selected',x===b)});renderMenu()});
+    tabs.appendChild(b);
+  });
+  $('#vegOnly').addEventListener('change',function(e){vegOnly=e.target.checked;renderMenu()});
+
+  function foot(m){
+    var q=cart[m.id]||0;
+    if(!q)return '<button class="add" data-add="'+m.id+'" aria-label="Add '+m.name+' to order">Add to order</button>';
+    return '<div class="stepper"><button data-dec="'+m.id+'" aria-label="Remove one '+m.name+'">−</button><span aria-live="polite">'+q+'</span><button data-inc="'+m.id+'" aria-label="Add one more '+m.name+'">+</button></div>';
+  }
+  function renderMenu(){
+    var list=MENU.filter(function(m){return (cat==='All'||m.cat===cat)&&(!vegOnly||m.veg)});
+    var g=$('#menuGrid');
+    if(!list.length){g.innerHTML='<div class="empty">No dishes match these filters. Try another category or turn off the vegetarian filter.</div>';return}
+    g.innerHTML=list.map(function(m,i){
+      return '<article class="dish" style="animation-delay:'+(i*45)+'ms"><div class="dish-art" style="background:linear-gradient(135deg,'+m.c1+'55,'+m.c2+'33)">'+(m.tag?'<span class="badge">'+m.tag+'</span>':'')+'<span class="vegmark '+(m.veg?'v':'n')+'" title="'+(m.veg?'Vegetarian':'Non-vegetarian')+'" role="img" aria-label="'+(m.veg?'Vegetarian':'Non-vegetarian')+'"></span>'+plate(m)+'</div><div class="dish-body"><h3>'+m.name+'</h3><p>'+m.desc+'</p><div class="dish-foot"><span class="price">'+money(m.price)+'</span><span data-foot="'+m.id+'">'+foot(m)+'</span></div></div></article>';
+    }).join('');
+  }
+  function refreshFoot(id){var el=document.querySelector('[data-foot="'+id+'"]');if(el)el.innerHTML=foot(byId[id])}
+
+  /* ---------- CART ---------- */
+  function change(id,d,silent){
+    cart[id]=(cart[id]||0)+d;
+    if(cart[id]<=0)delete cart[id];
+    persist();refreshFoot(id);renderCart();
+    var c=$('#cartCount');c.classList.remove('bump');void c.offsetWidth;c.classList.add('bump');
+    if(d>0&&!silent&&cart[id]===1)toast(byId[id].name+' added to your order');
+  }
+  document.addEventListener('click',function(e){
+    var t=e.target.closest('[data-add],[data-inc],[data-dec]');if(!t)return;
+    if(t.dataset.add)change(+t.dataset.add,1);
+    else if(t.dataset.inc)change(+t.dataset.inc,1);
+    else if(t.dataset.dec)change(+t.dataset.dec,-1);
+  });
+
+  var drawer=$('#drawer'),overlay=$('#overlay'),lastFocus=null;
+  function openCart(){lastFocus=document.activeElement;showCartView();drawer.classList.add('show');overlay.classList.add('show');drawer.setAttribute('aria-hidden','false');document.body.style.overflow='hidden';$('#closeCart').focus()}
+  function closeCart(){drawer.classList.remove('show');overlay.classList.remove('show');drawer.setAttribute('aria-hidden','true');document.body.style.overflow='';if(lastFocus&&lastFocus.focus)lastFocus.focus()}
+  $('#cartBtn').addEventListener('click',openCart);
+  $('#closeCart').addEventListener('click',closeCart);
+  overlay.addEventListener('click',closeCart);
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&drawer.classList.contains('show'))closeCart()});
+
+  var checkingOut=false;
+  function showCartView(){checkingOut=false;$('#placed').classList.remove('show');$('#dBody').style.display='';$('#dFoot').style.display='';$('#chk').classList.remove('show');$('#checkout').textContent='Continue to checkout';renderCart()}
+  function renderCart(){
+    var keys=Object.keys(cart),body=$('#dBody');
+    $('#cartCount').textContent=count();
+    if(!keys.length){
+      body.innerHTML='<div class="d-empty"><p style="font-size:1.1rem;font-weight:600;color:var(--ink)">Your order is empty</p><p style="margin-top:6px">Add a biryani from the menu to get started.</p></div>';
+    }else{
+      body.innerHTML=keys.map(function(k){var m=byId[k];return '<div class="item"><div class="nm"><b>'+m.name+'</b><span>'+money(m.price)+' each</span></div><div class="stepper"><button data-dec="'+k+'" aria-label="Remove one '+m.name+'">−</button><span>'+cart[k]+'</span><button data-inc="'+k+'" aria-label="Add one more '+m.name+'">+</button></div><b style="min-width:64px;text-align:right">'+money(m.price*cart[k])+'</b></div>'}).join('');
+    }
+    var s=subtotal(),g=s*.05;
+    $('#sub').textContent=money(s);$('#gst').textContent=money(g);$('#tot').textContent=money(s+g);
+    $('#checkout').disabled=!keys.length;
+    $('#checkout').style.opacity=keys.length?1:.5;
+    if(!keys.length&&checkingOut)showCartView();
+  }
+  $('#checkout').addEventListener('click',function(){
+    if(!count())return;
+    if(!checkingOut){checkingOut=true;$('#chk').classList.add('show');this.textContent='Place order';$('#c-name').focus();return}
+    var n=$('#c-name').value.trim(),p=$('#c-phone').value.replace(/\D/g,'').slice(-10),a=$('#c-addr').value.trim(),err=$('#c-err');
+    if(!n){err.textContent='Enter your name.';$('#c-name').focus();return}
+    if(p.length!==10){err.textContent='Enter a 10-digit mobile number.';$('#c-phone').focus();return}
+    if(a.length<6){err.textContent='Enter your full delivery address.';$('#c-addr').focus();return}
+    err.textContent='';
+    var total=subtotal()*1.05,id='ZF'+Math.floor(1000+Math.random()*9000);
+    $('#placedMsg').textContent='Thanks '+n+'. Order '+id+' for '+money(total)+' is confirmed. Expect a call on '+p+' and your biryani in about 45 minutes.';
+    cart={};persist();renderMenu();
+    $('#dBody').style.display='none';$('#dFoot').style.display='none';$('#placed').classList.add('show');
+    $('#cartCount').textContent=0;
+    ['#c-name','#c-phone','#c-addr'].forEach(function(s){$(s).value=''});
+  });
+  $('#placedDone').addEventListener('click',function(){closeCart();location.hash='#menu'});
+
+  /* ---------- COMBOS ---------- */
+  $('#combos').innerHTML=COMBOS.map(function(c,i){
+    return '<div class="combo '+c.cls+'"><small>'+c.serves+(c.note?' · '+c.note:'')+'</small><h3>'+c.name+'</h3><ul>'+c.items.map(function(x){return '<li>'+x+'</li>'}).join('')+'</ul><div class="price">'+money(c.price)+'</div><button class="btn '+(c.cls?'btn-saffron':'btn-dark')+'" data-combo="'+i+'">Add feast to order</button></div>';
+  }).join('');
+  $('#combos').addEventListener('click',function(e){
+    var b=e.target.closest('[data-combo]');if(!b)return;
+    var c=COMBOS[+b.dataset.combo];c.ids.forEach(function(id){change(id,1,true)});
+    toast(c.name+' added to your order');
+  });
+
+  /* ---------- COUNT UP + BAR ---------- */
+  var io=new IntersectionObserver(function(es){es.forEach(function(en){
+    if(!en.isIntersecting)return;io.unobserve(en.target);
+    if(en.target.id==='bar'){en.target.classList.add('in');return}
+    var el=en.target,end=+el.dataset.count,t0=null;
+    (function step(ts){t0=t0||ts;var p=Math.min((ts-t0)/1400,1);el.textContent=Math.round(end*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)})(performance.now());
+  })},{threshold:.5});
+  document.querySelectorAll('[data-count]').forEach(function(el){io.observe(el)});
+  io.observe($('#bar'));
+
+  /* ---------- RESERVATION ---------- */
+  var timeSel=$('#r-time'),guestSel=$('#r-guests');
+  ['12:00 pm','12:30 pm','1:00 pm','1:30 pm','2:00 pm','2:30 pm','3:00 pm','7:00 pm','7:30 pm','8:00 pm','8:30 pm','9:00 pm','9:30 pm','10:00 pm'].forEach(function(t){var o=document.createElement('option');o.value=t;o.textContent=t;timeSel.appendChild(o)});
+  for(var gi=1;gi<=12;gi++){var o=document.createElement('option');o.value=gi;o.textContent=gi+(gi===1?' guest':' guests');if(gi===2)o.selected=true;guestSel.appendChild(o)}
+  function iso(d){return d.getFullYear()+'-'+String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0')}
+  var today=new Date(),dateIn=$('#r-date');dateIn.min=iso(today);dateIn.value=iso(today);
+  function flag(id,bad){$(id).classList.toggle('bad',bad);return !bad}
+  $('#resForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var name=$('#r-name').value.trim(),phone=$('#r-phone').value.replace(/\D/g,'').slice(-10);
+    var ok=true;
+    ok=flag('#l-name',!name)&&ok;
+    ok=flag('#l-phone',phone.length!==10)&&ok;
+    ok=flag('#l-date',!dateIn.value||dateIn.value<iso(new Date()))&&ok;
+    ok=flag('#l-time',!timeSel.value)&&ok;
+    ok=flag('#l-guests',!guestSel.value)&&ok;
+    if(!ok){var first=document.querySelector('#resForm label.bad input,#resForm label.bad select');if(first)first.focus();return}
+    var d=new Date(dateIn.value+'T00:00:00').toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'});
+    $('#resMsg').textContent=name+', we have a table for '+guestSel.value+(guestSel.value==='1'?' guest':' guests')+' on '+d+' at '+timeSel.value+'.';
+    $('#resForm').style.display='none';$('#resOk').classList.add('show');
+  });
+  ['r-name','r-phone','r-date','r-time','r-guests'].forEach(function(id){$('#'+id).addEventListener('input',function(){var l=this.closest('label');if(l)l.classList.remove('bad')})});
+  $('#resAgain').addEventListener('click',function(){$('#resOk').classList.remove('show');$('#resForm').style.display='';$('#resForm').reset();dateIn.value=iso(new Date());guestSel.value='2'});
+
+  /* ---------- INIT ---------- */
+  renderMenu();renderCart();
+})();
+</script>
+</body>
+</html>
